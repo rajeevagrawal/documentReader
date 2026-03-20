@@ -47,7 +47,7 @@ public class OpenAiChatService {
 
         try {
             String jsonBody = objectMapper.writeValueAsString(requestBody);
-            URI uri = URI.create(trimTrailingSlash(ai.getBaseUrl()) + "/v1/chat/completions");
+            URI uri = URI.create(ai.getChatCompletionsUrl());
             HttpRequest request =
                     HttpRequest.newBuilder(uri)
                             .timeout(HTTP_TIMEOUT)
@@ -87,10 +87,4 @@ public class OpenAiChatService {
         return prompt;
     }
 
-    private static String trimTrailingSlash(String url) {
-        if (url == null || url.isEmpty()) {
-            return "https://api.openai.com";
-        }
-        return url.endsWith("/") ? url.substring(0, url.length() - 1) : url;
-    }
 }

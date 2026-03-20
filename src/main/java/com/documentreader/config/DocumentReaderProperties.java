@@ -7,6 +7,7 @@ public class DocumentReaderProperties {
 
     private final Pdf pdf = new Pdf();
     private final Ai ai = new Ai();
+    private final Storage storage = new Storage();
 
     public Pdf getPdf() {
         return pdf;
@@ -14,6 +15,10 @@ public class DocumentReaderProperties {
 
     public Ai getAi() {
         return ai;
+    }
+
+    public Storage getStorage() {
+        return storage;
     }
 
     public static class Pdf {
@@ -58,7 +63,11 @@ public class DocumentReaderProperties {
 
     public static class Ai {
         private String apiKey = "";
-        private String baseUrl = "https://api.openai.com";
+        /**
+         * Full chat-completions endpoint URL (for example:
+         * {@code https://api.openai.com/v1/chat/completions}).
+         */
+        private String chatCompletionsUrl = "https://api.openai.com/v1/chat/completions";
         private String model = "gpt-4o-mini";
 
         public String getApiKey() {
@@ -69,12 +78,12 @@ public class DocumentReaderProperties {
             this.apiKey = apiKey;
         }
 
-        public String getBaseUrl() {
-            return baseUrl;
+        public String getChatCompletionsUrl() {
+            return chatCompletionsUrl;
         }
 
-        public void setBaseUrl(String baseUrl) {
-            this.baseUrl = baseUrl;
+        public void setChatCompletionsUrl(String chatCompletionsUrl) {
+            this.chatCompletionsUrl = chatCompletionsUrl;
         }
 
         public String getModel() {
@@ -87,6 +96,41 @@ public class DocumentReaderProperties {
 
         public boolean isConfigured() {
             return apiKey != null && !apiKey.isBlank();
+        }
+    }
+
+    public static class Storage {
+        /**
+         * When true, the service writes retrieved PDFs and generated .docx bytes to the configured
+         * directories on the local filesystem.
+         */
+        private boolean enabled = true;
+
+        private String pdfDir = "src/main/resources/local-storage/pdfs";
+        private String wordDir = "src/main/resources/local-storage/output-docx";
+
+        public boolean isEnabled() {
+            return enabled;
+        }
+
+        public void setEnabled(boolean enabled) {
+            this.enabled = enabled;
+        }
+
+        public String getPdfDir() {
+            return pdfDir;
+        }
+
+        public void setPdfDir(String pdfDir) {
+            this.pdfDir = pdfDir;
+        }
+
+        public String getWordDir() {
+            return wordDir;
+        }
+
+        public void setWordDir(String wordDir) {
+            this.wordDir = wordDir;
         }
     }
 }

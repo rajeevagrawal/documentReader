@@ -32,7 +32,7 @@
 | Topic | Decision | Rationale | Alternatives considered |
 |-------|----------|-----------|-------------------------|
 | Integration | **JDK `HttpClient`** calling OpenAI **Chat Completions** JSON API | Spring AI 1.0.x BOM targets Spring Boot 3.4; Boot 4 uses this thin client until Spring AI aligns. Same env shape via `document.reader.ai.*`. | Spring AI `ChatClient` — adopt when Boot 4 + Spring AI BOM is verified. |
-| Provider (default) | **OpenAI** (`OPENAI_API_KEY`, `document.reader.ai.base-url`, `document.reader.ai.model`) | Matches pilot expectations; easy to swap base URL for OpenAI-compatible proxies. | Azure OpenAI — same pattern with base URL + key. |
+| Provider (default) | **OpenAI** (`OPENAI_API_KEY`, `document.reader.ai.chat-completions-url`, `document.reader.ai.model`) | Uses a configurable *full* chat-completions endpoint URL so OpenAI-compatible proxies can be swapped. | Azure OpenAI — same pattern with endpoint URL + key. |
 | Safety | System prompt + **refusal** for disallowed content; log decision id | Meets edge-case policy without blocking MVP. | Custom moderation service — future hardening. |
 
 ## 5. Operations (Docker / EKS / ECS)

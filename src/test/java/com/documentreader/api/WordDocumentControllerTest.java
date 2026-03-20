@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.documentreader.ai.OpenAiChatService;
 import com.documentreader.api.dto.GenerateWordRequest;
 import com.documentreader.docx.DocxWriterService;
+import com.documentreader.storage.LocalDocumentStorageService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ class WordDocumentControllerTest {
 
     @MockitoBean
     private DocxWriterService docxWriterService;
+
+    @MockitoBean
+    private LocalDocumentStorageService storage;
 
     @Test
     void generatesDocxWithDisposition() throws Exception {

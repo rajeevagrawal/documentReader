@@ -4,6 +4,7 @@ import com.documentreader.ai.OpenAiChatService;
 import com.documentreader.api.dto.GenerateWordRequest;
 import com.documentreader.api.util.SafeFileNames;
 import com.documentreader.docx.DocxWriterService;
+import com.documentreader.storage.LocalDocumentStorageService;
 import jakarta.validation.Valid;
 import java.nio.charset.StandardCharsets;
 import org.springframework.http.ContentDisposition;
@@ -25,10 +26,13 @@ public class WordDocumentController {
 
     private final OpenAiChatService openAiChatService;
     private final DocxWriterService docxWriterService;
+    private final LocalDocumentStorageService storage;
 
-    public WordDocumentController(OpenAiChatService openAiChatService, DocxWriterService docxWriterService) {
+    public WordDocumentController(
+            OpenAiChatService openAiChatService, DocxWriterService docxWriterService, LocalDocumentStorageService storage) {
         this.openAiChatService = openAiChatService;
         this.docxWriterService = docxWriterService;
+        this.storage = storage;
     }
 
     @PostMapping("/word")
@@ -38,6 +42,7 @@ public class WordDocumentController {
                 openAiChatService.generateFromPrompt(
                         request.prompt(), request.pdfContextText(), request.usePdfContextEffective());
         byte[] docx = docxWriterService.writeDocument(generated);
+        storage.saveDocx(fileName, docx);
         ContentDisposition disposition =
                 ContentDisposition.attachment().filename(fileName, StandardCharsets.UTF_8).build();
         return ResponseEntity.ok()

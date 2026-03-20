@@ -7,14 +7,18 @@ spring:
 document:
   reader:
     pdf:
-      max-bytes: 26214400
-      max-pages: 200
-      fetch-timeout-seconds: 60
-      allow-insecure-http: false
+      max-bytes: ${DOCUMENT_READER_PDF_MAX_BYTES:26214400}
+      max-pages: ${DOCUMENT_READER_PDF_MAX_PAGES:200}
+      fetch-timeout-seconds: ${DOCUMENT_READER_PDF_FETCH_TIMEOUT_SECONDS:60}
+      allow-insecure-http: ${DOCUMENT_READER_PDF_ALLOW_INSECURE_HTTP:false}
     ai:
-      api-key: ${OPENAI_API_KEY:}
-      base-url: https://api.openai.com
-      model: gpt-4o-mini
+      api-key: ${OPENAI_API_KEY:${DOCUMENT_READER_AI_API_KEY:}}
+      chat-completions-url: ${DOCUMENT_READER_AI_CHAT_COMPLETIONS_URL:https://api.openai.com/v1/chat/completions}
+      model: ${DOCUMENT_READER_AI_MODEL:gpt-4o-mini}
+    storage:
+      enabled: ${DOCUMENT_READER_STORAGE_ENABLED:true}
+      pdf-dir: ${DOCUMENT_READER_STORAGE_PDF_DIR:src/main/resources/local-storage/pdfs}
+      word-dir: ${DOCUMENT_READER_STORAGE_WORD_DIR:src/main/resources/local-storage/output-docx}
 
 management:
   endpoints:
@@ -27,4 +31,4 @@ springdoc:
     path: /v3/api-docs
 
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}

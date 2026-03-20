@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.documentreader.api.dto.ExtractPdfRequest;
 import com.documentreader.pdf.PdfFetchService;
 import com.documentreader.pdf.PdfTextExtractionService;
+import com.documentreader.storage.LocalDocumentStorageService;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -32,6 +33,9 @@ class PdfExtractControllerTest {
 
     @MockitoBean
     private PdfTextExtractionService pdfTextExtractionService;
+
+    @MockitoBean
+    private LocalDocumentStorageService storage;
 
     @Test
     void extractReturnsReady() throws Exception {
