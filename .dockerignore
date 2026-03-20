@@ -1,0 +1,12 @@
+.git
+.gitignore
+target
+.idea
+*.iml
+.specify
+.specs
+specs
+.cursor
+.venv
+README.md
+**/.DS_Store

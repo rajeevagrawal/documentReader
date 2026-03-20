@@ -1,0 +1,42 @@
+---
+description: Project Development Guidelines
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# documentReader Development Guidelines
+
+Auto-generated from all feature plans. Last updated: 2026-03-19
+
+## Active Technologies
+- Java 25 (LTS) + Spring Boot 4.0.x, Spring Web/WebFlux (WebClient), Spring AI (ChatClient), Apache PDFBox, Apache POI (XWPF), Springdoc OpenAPI (optional for `/v3/api-docs` aligned with `contracts/openapi.yaml`); **when durable storage is required**, use **Spring Data JPA** (or JDBC) with **PostgreSQL** driver and **Flyway** or **Liquibase** for schema migrations (001-pdf-to-word-agent)
+- MVP stays stateless (temp files only). **If a database is introduced** (job history, audit, async tasks, multi-step sessions), use **PostgreSQL** as the only supported RDBMS unless an explicit future ADR says otherwise (see `research.md`, `data-model.md`) (001-pdf-to-word-agent)
+- Java 25 (LTS) + Spring Boot 4.0.x, Spring Web/WebFlux (WebClient), Spring AI (ChatClient), Apache PDFBox, Apache POI (XWPF), Springdoc OpenAPI (optional for `/v3/api-docs` aligned with `contracts/openapi.yaml`); **when durable storage is required**, use **Spring Data JPA** (or JDBC) with **PostgreSQL** driver and **Flyway** or **Liquibase** for schema migrations (001-pdf-to-word-agent)
+- MVP stays stateless (temp files only). **If a database is introduced** (job history, audit, async tasks, multi-step sessions), use **PostgreSQL** as the only supported RDBMS unless an explicit future ADR says otherwise (see `research.md`, `data-model.md`) (001-pdf-to-word-agent)
+
+- Java 25 (LTS) + Spring Boot 4.0.x, Spring Web/WebFlux (WebClient), Spring AI (ChatClient), Apache PDFBox, Apache POI (XWPF), Springdoc OpenAPI (optional for `/v3/api-docs` aligned with `contracts/openapi.yaml`) (001-pdf-to-word-agent)
+
+## Project Structure
+
+```text
+pom.xml, Dockerfile, src/main/java/com/documentreader/..., src/test/java/...
+```
+
+(Full tree: `specs/001-pdf-to-word-agent/plan.md`.)
+
+## Commands
+
+# Add commands for Java 25 (LTS)
+
+## Code Style
+
+Java 25 (LTS): Follow standard conventions
+
+## Recent Changes
+- 001-pdf-to-word-agent: Added Java 25 (LTS) + Spring Boot 4.0.x, Spring Web/WebFlux (WebClient), Spring AI (ChatClient), Apache PDFBox, Apache POI (XWPF), Springdoc OpenAPI (optional for `/v3/api-docs` aligned with `contracts/openapi.yaml`); **when durable storage is required**, use **Spring Data JPA** (or JDBC) with **PostgreSQL** driver and **Flyway** or **Liquibase** for schema migrations
+- 001-pdf-to-word-agent: Added Java 25 (LTS) + Spring Boot 4.0.x, Spring Web/WebFlux (WebClient), Spring AI (ChatClient), Apache PDFBox, Apache POI (XWPF), Springdoc OpenAPI (optional for `/v3/api-docs` aligned with `contracts/openapi.yaml`); **when durable storage is required**, use **Spring Data JPA** (or JDBC) with **PostgreSQL** driver and **Flyway** or **Liquibase** for schema migrations
+
+- 001-pdf-to-word-agent: Added Java 25 (LTS) + Spring Boot 4.0.x, Spring Web/WebFlux (WebClient), Spring AI (ChatClient), Apache PDFBox, Apache POI (XWPF), Springdoc OpenAPI (optional for `/v3/api-docs` aligned with `contracts/openapi.yaml`)
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->

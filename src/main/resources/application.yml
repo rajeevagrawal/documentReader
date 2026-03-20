@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: document-reader
+  main:
+    web-application-type: servlet
+
+document:
+  reader:
+    pdf:
+      max-bytes: 26214400
+      max-pages: 200
+      fetch-timeout-seconds: 60
+      allow-insecure-http: false
+    ai:
+      api-key: ${OPENAI_API_KEY:}
+      base-url: https://api.openai.com
+      model: gpt-4o-mini
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+
+server:
+  port: 8080
